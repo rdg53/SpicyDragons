@@ -78,7 +78,7 @@ public class WallGenerator : MonoBehaviour {
             {
                 for (int y = 0; y < height; y++)
                 {
-                    if (map[x, y] == 1)
+                    if (map[x, y] == 0)
                     {
                         currentPosition = new Vector3(XDimensionOfWallUnit * (-width / 2 + x + 0.5f), 0, ZDimensionOfWallUnit * (-height / 2 + y + 0.5f));
                         GameObject newWallElement = Instantiate(wallUnit, currentPosition, Quaternion.identity);

@@ -19,6 +19,10 @@ public class WallUnitUIController : MonoBehaviour {
     public Texture2D imageCutout;
 
     public WallGenerator wallGenerator;
+
+    // For ResoultionControlledImagePixelReader test. The number of pixels to skip for each check, which reduces resolution
+    // of grid relative to pixel count of source cutout image.
+    public int resolutionScalingFactor = 1;
     #endregion
 
     #region Unity Methods
@@ -50,9 +54,10 @@ public class WallUnitUIController : MonoBehaviour {
     void CreateWallUI()
     {
         // Creates the array holding values for the locations to create 3D elements
-        //GenerateWallGridUI();
+        GenerateWallGridUI();
 
-        ImagePixelReader();
+        //ImagePixelReader();
+        //ResolutionControlledImagePixelReader();
 
         Vector2 currentPosition;
         float xScaleWallUnitUI;
@@ -74,6 +79,11 @@ public class WallUnitUIController : MonoBehaviour {
                 for (int y = 0; y < height; y++)
                 {
                     currentPosition = new Vector2((unityUIScalingFactor * xScaleWallUnitUI) * (-width / 2 + x + 0.5f), (unityUIScalingFactor * yScaleWallUnitUI) * (-height / 2 + y + 0.5f));
+                    //currentPosition = new Vector3((unityUIScalingFactor * xScaleWallUnitUI) * (-width / 2 + x + 0.5f), (unityUIScalingFactor * yScaleWallUnitUI) * (-height / 2 + y + 0.5f), 0f);
+                    
+
+                    Debug.Log("unityUIScalingFactor" + unityUIScalingFactor + "xScaleWallUnitUI" + xScaleWallUnitUI + "width" + width + "yScaleWallUnitUI" + yScaleWallUnitUI + "height" + height);
+
                     Image createdWallUnitUI = Instantiate(wallUnitUI, currentPosition, Quaternion.identity);
                     createdWallUnitUI.transform.SetParent(gameObject.transform, false);
 
@@ -110,6 +120,42 @@ public class WallUnitUIController : MonoBehaviour {
             {
                 //Color currentPixelColor = imageCutout.GetPixel(x, y);
                 currentPixelAlpha = imageCutout.GetPixel(x, y).a;
+                Debug.Log("The pixel color values at location " + x + ", " + y + " are: " + currentPixelAlpha);
+
+                // Alpha values should generally be 1.000 or 0.000, so this should convert those to int values of either 1 or 0
+                grid[x, y] = Mathf.RoundToInt(currentPixelAlpha);
+                Debug.Log("The grid value at location " + x + ", " + y + " is now: " + grid[x, y]);
+            }
+        }
+
+    }
+
+    // TESTING: Read an image file and store the color value of varying amounts of pixels into an array.
+    // This will look into skipping certain amounts of pixels to deal with higher resolution images.
+    void ResolutionControlledImagePixelReader()
+    {
+        float currentPixelAlpha;
+
+        // Captures dimensions of the analyzed image in pixels
+        int texturePixelWidth = imageCutout.width / resolutionScalingFactor;
+        int texturePixelHeight = imageCutout.height / resolutionScalingFactor;
+
+        // Currently necessary for adjusting width and height values for method CreateWallUI so that they match
+        width = texturePixelWidth;
+        height = texturePixelHeight;
+
+        // Initializs array with dimensions matching that of the image in pixels
+        grid = new int[width, height];
+
+        Debug.Log("The texture width in pixels = " + texturePixelWidth + " and the texture height in pixels = " + texturePixelHeight);
+
+        // This will go through the entire grid array and assign each array element the alpha value of the associated pixel of the attached image
+        for (int x = 0; x < texturePixelWidth; x++)
+        {
+            for (int y = 0; y < texturePixelHeight; y++)
+            {
+                //Color currentPixelColor = imageCutout.GetPixel(x, y);
+                currentPixelAlpha = imageCutout.GetPixel(x * resolutionScalingFactor, y * resolutionScalingFactor).a;
                 Debug.Log("The pixel color values at location " + x + ", " + y + " are: " + currentPixelAlpha);
 
                 // Alpha values should generally be 1.000 or 0.000, so this should convert those to int values of either 1 or 0
