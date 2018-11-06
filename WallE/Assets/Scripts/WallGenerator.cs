@@ -5,8 +5,8 @@ using System;
 public class WallGenerator : MonoBehaviour {
 
     #region Variables
-    public int width;
-    public int height;
+    private int width;
+    private int height;
 
     public GameObject wallUnit;
     public float XDimensionOfWallUnit = 1f;
@@ -28,6 +28,7 @@ public class WallGenerator : MonoBehaviour {
 
     private void Start()
     {
+        // Makes sure dimensions of true wall grid match that determined by the UI grid
         width = wallUnitUIControllerScript.width;
         height = wallUnitUIControllerScript.height;
 
@@ -68,7 +69,8 @@ public class WallGenerator : MonoBehaviour {
 
     }
 
-    // Builds wall object out of WallUnitObjects by placing the WallUnitObjects in the designated values found in the array
+    // Builds wall object out of WallUnitObjects by placing the WallUnitObjects in locations determined
+    // by the designated values found in the array
     public void CreateWall()
     {
         Vector3 currentPosition;

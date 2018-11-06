@@ -579,10 +579,7 @@ MonoBehaviour:
   height: 4
   maxWidthUIGrid: 2
   maxHeightUIGrid: 2
-  wallUnitUI: {fileID: 114969553962836888, guid: f71f967472a5de840b8ade18ee794ac3,
-    type: 2}
   imageCutout: {fileID: 2800000, guid: 9651191cfcfca8d4587568aecf46c0ab, type: 3}
-  wallGenerator: {fileID: 1955015799}
   resolutionScalingFactor: 1
 --- !u!1 &1716025106
 GameObject:
@@ -685,12 +682,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454a1f757d1d61c4ab972b03c88b2d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 2
-  height: 2
-  wallUnit: {fileID: 1017555017052118, guid: 73d8950c99f97c548a52933094b7e930, type: 2}
-  XDimensionOfWallUnit: 1
-  YDimensionOfWallUnit: 1
-  ZDimensionOfWallUnit: 1
+  wallUnit: {fileID: 1487333462512784, guid: 8e05c5ea510b1074bb3003569034a4c5, type: 2}
+  XDimensionOfWallUnit: 2
+  YDimensionOfWallUnit: 2
+  ZDimensionOfWallUnit: 2
   wallExists: 0
   wallUnitUIControllerScript: {fileID: 1521514756}
 --- !u!4 &1955015800
