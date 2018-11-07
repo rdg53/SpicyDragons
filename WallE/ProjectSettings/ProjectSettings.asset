@@ -265,7 +265,10 @@ PlayerSettings:
     m_Devices:
     - cardboard
 <<<<<<< HEAD
+<<<<<<< HEAD
     - daydream
+=======
+>>>>>>> af08f12f085d6ad729efba817907fc1be1891465
 =======
 >>>>>>> af08f12f085d6ad729efba817907fc1be1891465
   m_BuildTargetEnableVuforiaSettings: []
