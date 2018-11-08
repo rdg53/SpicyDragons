@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class WallUnitUIScript : MonoBehaviour {
+public class WallUnitUIScript : MonoBehaviour, IPointerDownHandler {
 
     #region Variables
 
@@ -21,6 +22,8 @@ public class WallUnitUIScript : MonoBehaviour {
     // Initializes tile as existing or nonexisting color based on its initial value.
     private void Start()
     {
+        wallUnitUI = gameObject.GetComponent<Image>();
+
         wallGenerator = GameObject.Find("WallGenerator").GetComponent<WallGenerator>();
 
         if (unitExistenceArrayValue == 1)
@@ -31,7 +34,12 @@ public class WallUnitUIScript : MonoBehaviour {
         {
             NonexistingWallUnit();
         }
+    }
 
+    // Performs necessary method when UI image object is clicked
+    public void OnPointerDown (PointerEventData eventData)
+    {
+        ChangeWallUnitUIValue();
     }
 
     // Changes wall unit value and applies new existing condition based on that new value, and changes corresponding array value in the WallGenerator to match.
@@ -62,28 +70,6 @@ public class WallUnitUIScript : MonoBehaviour {
     {
         wallUnitUI.GetComponent<Image>().color = Color.white;
     }
-
-    // Following does not work for images, only works with detecting physical objects
-
-    //void ImageDetectionRayCast()
-    //{
-    //    RaycastHit hit;
-
-    //    if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
-    //    {
-    //        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 2, Color.yellow);
-    //        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-    //        Debug.Log("Did Hit");
-
-    //        unitExistenceArrayValue = 0;
-    //        NonexistingWallUnit();
-    //    }
-    //    else
-    //    {
-    //        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-    //        Debug.Log("Did not Hit");
-    //    }
-    //}
 
 
     #endregion
