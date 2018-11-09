@@ -13,17 +13,22 @@ public class WallMover : MonoBehaviour {
     public Image renderImage;
 
 
+    List<GameObject> poseList = new List<GameObject>();
+     
     bool wallSpawned = false;
 
     public Canvas posePicker;
 
 	// Use this for initialization
+    //find start position for walls
 	void Start () {
         startPosition = new Vector3(0, 25, 500);
-	}
 
+        wallPositionParent = GameObject.Find("wallPosition");
+    }
 
-    public void SpawnWall(GameObject cubeName)
+    //add or remove pose to list when button is clicked
+    public void AddRemovePose(GameObject cubeName)
     {
         this.HideShowPicker();
         wallPositionParent = GameObject.Find("wallPosition");
@@ -31,36 +36,49 @@ public class WallMover : MonoBehaviour {
         //wall.transform.SetPositionAndRotation(new Vector3(0, 0, 0),new Quaternion(0,0,0,0));
         wall.transform.parent = wallPositionParent.transform;
         // wall.transform.localScale = new Vector3(0.01f,0.01f,0.01f);
-
-        //wallSpawned = true;
-        StartCoroutine(MoveOverSeconds(wall,new Vector3(0,0,0), 5f));
-
-        /*if (wallSpawned)
+        if (poseList.Contains(cubeName))
         {
-            Destroy(wall);
-            wallSpawned = false;
-
-        }*/
+            poseList.Remove(cubeName);
+        }
+        else
+        {
+            poseList.Add(cubeName);
+            Debug.Log(cubeName.ToString());
+        }
 
     }
 
+    public void ToggleButton(Button button)
+    {
+        if (button.colors.highlightedColor.r != 1.0f)
+        {
+            
+        }
+
+        Debug.Log(button.colors.highlightedColor.ToString());
+    }
+
+    //spawn the entire list of walls
+    public void SpawnWallList()
+    {     
+        this.HideShowPicker();
+        StartCoroutine(MoveOverSeconds(new Vector3(0, 0, 0), 5f));
+    }
+
+    //hide/show the picker canvas
     void HideShowPicker()
     {
         posePicker.enabled = !posePicker.isActiveAndEnabled;
     }
 
-
-    public IEnumerator MoveOverSeconds(GameObject objectToMove, Vector3 end, float seconds)
+    //spawn, parent, and move the walls from start to end in 5 seconds
+    public IEnumerator MoveOverSeconds(Vector3 end, float seconds)
     {
-        float elapsedTime = 0;
-        Vector3 startingPos = objectToMove.transform.position;
-        while (elapsedTime < seconds)
+        foreach (GameObject cube in poseList)
         {
-            objectToMove.transform.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
-            elapsedTime += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        objectToMove.transform.position = end;
+            wall = Instantiate(cube, wallPositionParent.transform.position, new Quaternion(0, 0, 0, 0));
+            wall.transform.parent = wallPositionParent.transform;
+            wall.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
         RenderUnlitCamera render = wall.GetComponent<RenderUnlitCamera>();
 
@@ -71,8 +89,21 @@ public class WallMover : MonoBehaviour {
 
         Destroy(wall);
         this.HideShowPicker();
+            float elapsedTime = 0;
+            Vector3 startingPos = wall.transform.position;
 
-        Debug.Log("Over");
+            while (elapsedTime < seconds)
+            {
+                wall.transform.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
+                elapsedTime += Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+            wall.transform.position = end;
+
+            Destroy(wall);
+        }
+        this.HideShowPicker();
+        poseList.Clear();
     }
 
     // Update is called once per frame
