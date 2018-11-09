@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 114256940531049844}
   - component: {fileID: 114518673718418040}
   m_Layer: 5
-  m_Name: posePickerCanvas
+  m_Name: MattsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
