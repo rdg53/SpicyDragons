@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WallMover : MonoBehaviour {
 
     Vector3 startPosition;
     GameObject wallPositionParent;
     GameObject wall;
+
+    public Text percentageText;
+    public Image renderImage;
+
 
     bool wallSpawned = false;
 
@@ -25,7 +30,7 @@ public class WallMover : MonoBehaviour {
         wall = Instantiate(cubeName, wallPositionParent.transform.position, new Quaternion(0, 0, 0, 0));
         //wall.transform.SetPositionAndRotation(new Vector3(0, 0, 0),new Quaternion(0,0,0,0));
         wall.transform.parent = wallPositionParent.transform;
-        wall.transform.localScale = new Vector3(0.01f,0.01f,0.01f);
+        // wall.transform.localScale = new Vector3(0.01f,0.01f,0.01f);
 
         //wallSpawned = true;
         StartCoroutine(MoveOverSeconds(wall,new Vector3(0,0,0), 5f));
@@ -56,6 +61,13 @@ public class WallMover : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         objectToMove.transform.position = end;
+
+        RenderUnlitCamera render = wall.GetComponent<RenderUnlitCamera>();
+
+        render.RenderCamera();
+        renderImage.gameObject.SetActive(true);
+        renderImage.sprite = Sprite.Create(render.texture2D, new Rect(0, 0, render.renderTexture.width, render.renderTexture.height), new Vector2(0.5f,0.5f));
+        StartCoroutine(render.CompareTexture(percentageText));
 
         Destroy(wall);
         this.HideShowPicker();
