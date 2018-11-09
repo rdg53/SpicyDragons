@@ -298,3 +298,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 20760953666303208}
+  renderTexture: {fileID: 0}
+  texture2D: {fileID: 0}
