@@ -30,11 +30,11 @@ public class WallMover : MonoBehaviour {
     //add or remove pose to list when button is clicked
     public void AddRemovePose(GameObject cubeName)
     {
-        this.HideShowPicker();
-        wallPositionParent = GameObject.Find("wallPosition");
-        wall = Instantiate(cubeName, wallPositionParent.transform.position, new Quaternion(0, 0, 0, 0));
+        //this.HideShowPicker();
+        //wallPositionParent = GameObject.Find("wallPosition");
+        //wall = Instantiate(cubeName, wallPositionParent.transform.position, new Quaternion(0, 0, 0, 0));
         //wall.transform.SetPositionAndRotation(new Vector3(0, 0, 0),new Quaternion(0,0,0,0));
-        wall.transform.parent = wallPositionParent.transform;
+        //wall.transform.parent = wallPositionParent.transform;
         // wall.transform.localScale = new Vector3(0.01f,0.01f,0.01f);
         if (poseList.Contains(cubeName))
         {
@@ -48,6 +48,7 @@ public class WallMover : MonoBehaviour {
 
     }
 
+    //test function for button toggle color change
     public void ToggleButton(Button button)
     {
         if (button.colors.highlightedColor.r != 1.0f)
@@ -76,22 +77,23 @@ public class WallMover : MonoBehaviour {
     {
         foreach (GameObject cube in poseList)
         {
+            //create the pose wall and set the position relative to the parent
             wall = Instantiate(cube, wallPositionParent.transform.position, new Quaternion(0, 0, 0, 0));
             wall.transform.parent = wallPositionParent.transform;
             wall.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
-        RenderUnlitCamera render = wall.GetComponent<RenderUnlitCamera>();
+            RenderUnlitCamera render = wall.GetComponent<RenderUnlitCamera>();
 
-        render.RenderCamera();
-        renderImage.gameObject.SetActive(true);
-        renderImage.sprite = Sprite.Create(render.texture2D, new Rect(0, 0, render.renderTexture.width, render.renderTexture.height), new Vector2(0.5f,0.5f));
-        StartCoroutine(render.CompareTexture(percentageText));
+            render.RenderCamera();
+            renderImage.gameObject.SetActive(true);
+            renderImage.sprite = Sprite.Create(render.texture2D, new Rect(0, 0, render.renderTexture.width, render.renderTexture.height), new Vector2(0.5f,0.5f));
+            StartCoroutine(render.CompareTexture(percentageText));
+            
 
-        Destroy(wall);
-        this.HideShowPicker();
             float elapsedTime = 0;
             Vector3 startingPos = wall.transform.position;
 
+            //move the wall
             while (elapsedTime < seconds)
             {
                 wall.transform.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
