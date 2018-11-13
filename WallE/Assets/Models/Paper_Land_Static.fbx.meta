@@ -128,7 +128,12 @@ ModelImporter:
     4300042: Tape_Piece_3
     4300044: Tape_Piece_4
     4300046: Tape_Piece_5
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: 0046f2376bddd804f83e0ef663f02004, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
