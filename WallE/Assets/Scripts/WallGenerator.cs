@@ -73,6 +73,14 @@ public class WallGenerator : MonoBehaviour {
     // by the designated values found in the array
     public void CreateWall()
     {
+        // Creates a new gameObject as a child of this gameObject that will serve as a container (the parent) of
+        // all of the generated wall elements.
+        // This helps create a simple gameObject that solely contains wall elements that can be saved as a prefab 
+        // for use in other scenes.
+        GameObject generatedWall;
+        generatedWall = new GameObject("GeneratedWall");
+        generatedWall.transform.SetParent(gameObject.transform, false);
+
         Vector3 currentPosition;
         if (map != null)
         {
@@ -84,7 +92,8 @@ public class WallGenerator : MonoBehaviour {
                     {
                         currentPosition = new Vector3(XDimensionOfWallUnit * (-width / 2 + x + 0.5f), 0, ZDimensionOfWallUnit * (-height / 2 + y + 0.5f));
                         GameObject newWallElement = Instantiate(wallUnit, currentPosition, Quaternion.identity);
-                        newWallElement.transform.SetParent(gameObject.transform, false);
+                        //newWallElement.transform.SetParent(gameObject.transform, false);
+                        newWallElement.transform.SetParent(generatedWall.transform, false);
                     }
                 }
             }
