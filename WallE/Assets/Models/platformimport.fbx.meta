@@ -29,12 +29,7 @@ ModelImporter:
     4300004: pencil
     4300006: pencil1
     9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: 0046f2376bddd804f83e0ef663f02004, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
