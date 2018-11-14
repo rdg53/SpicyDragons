@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class WallMover : MonoBehaviour {
@@ -14,17 +15,17 @@ public class WallMover : MonoBehaviour {
 
 
     List<GameObject> poseList = new List<GameObject>();
-     
     bool wallSpawned = false;
-
     public Canvas posePicker;
+
+    public PlayableDirector playableDirector;
 
 	// Use this for initialization
     //find start position for walls
 	void Start () {
         startPosition = new Vector3(0, 25, 500);
-
         wallPositionParent = GameObject.Find("wallPosition");
+        playableDirector.gameObject.SetActive(false);
     }
 
     //add or remove pose to list when button is clicked
@@ -63,6 +64,11 @@ public class WallMover : MonoBehaviour {
     public void SpawnWallList()
     {     
         this.HideShowPicker();
+        playableDirector.gameObject.SetActive(true);
+        playableDirector.Play();
+
+        // playableDirector.on
+
         StartCoroutine(MoveOverSeconds(new Vector3(0, 22, 0), 5f));
     }
 
@@ -75,6 +81,11 @@ public class WallMover : MonoBehaviour {
     //spawn, parent, and move the walls from start to end in 5 seconds
     public IEnumerator MoveOverSeconds(Vector3 end, float seconds)
     {
+        while(playableDirector.time < playableDirector.duration-0.5f){
+            yield return true;
+        }
+        playableDirector.gameObject.SetActive(false);
+
         foreach (GameObject cube in poseList)
         {
             //create the pose wall and set the position relative to the parent
