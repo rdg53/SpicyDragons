@@ -7,6 +7,7 @@ public class WallGenerator : MonoBehaviour {
     #region Variables
     private int width;
     private int height;
+    private string wallImageName;
 
     public GameObject wallUnit;
     public float XDimensionOfWallUnit = 1f;
@@ -31,8 +32,11 @@ public class WallGenerator : MonoBehaviour {
         // Makes sure dimensions of true wall grid match that determined by the UI grid
         width = wallUnitUIControllerScript.width;
         height = wallUnitUIControllerScript.height;
+        wallImageName = wallUnitUIControllerScript.imageCutout.name;
 
         map = new int[width, height];
+
+
 
         FillWallArray();
     }
@@ -78,7 +82,7 @@ public class WallGenerator : MonoBehaviour {
         // This helps create a simple gameObject that solely contains wall elements that can be saved as a prefab 
         // for use in other scenes.
         GameObject generatedWall;
-        generatedWall = new GameObject("GeneratedWall");
+        generatedWall = new GameObject("GeneratedWall_" + wallImageName);
         generatedWall.transform.SetParent(gameObject.transform, false);
 
         Vector3 currentPosition;
@@ -92,7 +96,6 @@ public class WallGenerator : MonoBehaviour {
                     {
                         currentPosition = new Vector3(XDimensionOfWallUnit * (-width / 2 + x + 0.5f), 0, ZDimensionOfWallUnit * (-height / 2 + y + 0.5f));
                         GameObject newWallElement = Instantiate(wallUnit, currentPosition, Quaternion.identity);
-                        //newWallElement.transform.SetParent(gameObject.transform, false);
                         newWallElement.transform.SetParent(generatedWall.transform, false);
                     }
                 }
