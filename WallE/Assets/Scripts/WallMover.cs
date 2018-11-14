@@ -20,6 +20,8 @@ public class WallMover : MonoBehaviour {
 
     public PlayableDirector playableDirector;
 
+    List<GameObject> pickedPanel = new List<GameObject>();
+
 	// Use this for initialization
     //find start position for walls
 	void Start () {
@@ -50,26 +52,74 @@ public class WallMover : MonoBehaviour {
     }
 
     //test function for button toggle color change
-    public void ToggleButton(Button button)
+    public void TogglePanel(GameObject buttonPanel)
     {
-        if (button.colors.highlightedColor.r != 1.0f)
+
+        if (pickedPanel.Contains(buttonPanel))
+        {
+            pickedPanel.Remove(buttonPanel);
+            buttonPanel.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.392f);
+        }
+        else
+        {
+            pickedPanel.Add(buttonPanel);
+            buttonPanel.GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.392f);
+        }
+
+        /*Color panelColor = buttonPanel.GetComponent<Image>().color;
+        Debug.Log(panelColor);
+
+
+
+        if (panelColor == new Color(1.0f,1.0f,1.0f,0.392f))
+        {
+            buttonPanel.GetComponent<Image>().color = new Color(0.0f,0.0f,0.0f,0.392f);
+
+           Debug.Log(buttonPanel.GetComponent<Image>().color.r.ToString());
+        }
+        else
+        {
+            //panelColor = Color.white;
+            buttonPanel.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.392f);
+
+           Debug.Log("unselected");
+        }*/
+
+
+
+
+        /*if (button.colors.highlightedColor.r != 1.0f)
         {
             
         }
-
-        Debug.Log(button.colors.highlightedColor.ToString());
+        */
+        //Debug.Log(button.colors.highlightedColor.ToString());
     }
 
     //spawn the entire list of walls
     public void SpawnWallList()
-    {     
+    {
+
+        
         this.HideShowPicker();
         playableDirector.gameObject.SetActive(true);
         playableDirector.Play();
 
         // playableDirector.on
 
+
+        /*foreach (GameObject but in pickedPanel)
+        {
+            but.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.392f);
+            pickedPanel.Remove(but);
+        }*/
+
+
         StartCoroutine(MoveOverSeconds(new Vector3(0, 22, 0), 5f));
+
+
+
+
     }
 
     //hide/show the picker canvas
@@ -120,6 +170,13 @@ public class WallMover : MonoBehaviour {
             Destroy(wall);
         }
         this.HideShowPicker();
+        foreach (GameObject but in pickedPanel)
+        {
+            but.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.392f);
+            //pickedPanel.Remove(but);
+        }
+
+        pickedPanel.Clear();
         poseList.Clear();
     }
 
