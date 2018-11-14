@@ -1,0 +1,247 @@
+fileFormatVersion: 2
+guid: 4dea677338cdaa840b20c7af4d88d2b0
+timeCreated: 1542218219
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Binder_1
+    100004: Binder_2
+    100006: Binder_3
+    100008: Marker
+    100010: Paper_1
+    100012: Paper_10
+    100014: Paper_11
+    100016: Paper_12
+    100018: Paper_13
+    100020: Paper_2
+    100022: Paper_3
+    100024: Paper_4
+    100026: Paper_5
+    100028: Paper_6
+    100030: Paper_7
+    100032: Paper_8
+    100034: Paper_9
+    100036: Pen
+    100038: Pen1
+    100040: pencil2
+    100042: pencil3
+    100044: Scissor_2
+    100046: Stapler
+    100048: stickynotes
+    100050: Tape_Piece_1
+    100052: Tape_Piece_2
+    100054: Tape_Piece_3
+    100056: Tape_Piece_4
+    100058: Tape_Piece_5
+    100060: Tape_Roll
+    100062: Tape_Roll1
+    400000: //RootNode
+    400002: Binder_1
+    400004: Binder_2
+    400006: Binder_3
+    400008: Marker
+    400010: Paper_1
+    400012: Paper_10
+    400014: Paper_11
+    400016: Paper_12
+    400018: Paper_13
+    400020: Paper_2
+    400022: Paper_3
+    400024: Paper_4
+    400026: Paper_5
+    400028: Paper_6
+    400030: Paper_7
+    400032: Paper_8
+    400034: Paper_9
+    400036: Pen
+    400038: Pen1
+    400040: pencil2
+    400042: pencil3
+    400044: Scissor_2
+    400046: Stapler
+    400048: stickynotes
+    400050: Tape_Piece_1
+    400052: Tape_Piece_2
+    400054: Tape_Piece_3
+    400056: Tape_Piece_4
+    400058: Tape_Piece_5
+    400060: Tape_Roll
+    400062: Tape_Roll1
+    2100000: lambert2
+    2100002: lambert1
+    2300000: Binder_1
+    2300002: Binder_2
+    2300004: Binder_3
+    2300006: Marker
+    2300008: Paper_1
+    2300010: Paper_10
+    2300012: Paper_11
+    2300014: Paper_12
+    2300016: Paper_13
+    2300018: Paper_2
+    2300020: Paper_3
+    2300022: Paper_4
+    2300024: Paper_5
+    2300026: Paper_6
+    2300028: Paper_7
+    2300030: Paper_8
+    2300032: Paper_9
+    2300034: Pen
+    2300036: Pen1
+    2300038: pencil2
+    2300040: pencil3
+    2300042: Scissor_2
+    2300044: Stapler
+    2300046: stickynotes
+    2300048: Tape_Piece_1
+    2300050: Tape_Piece_2
+    2300052: Tape_Piece_3
+    2300054: Tape_Piece_4
+    2300056: Tape_Piece_5
+    2300058: Tape_Roll
+    2300060: Tape_Roll1
+    3300000: Binder_1
+    3300002: Binder_2
+    3300004: Binder_3
+    3300006: Marker
+    3300008: Paper_1
+    3300010: Paper_10
+    3300012: Paper_11
+    3300014: Paper_12
+    3300016: Paper_13
+    3300018: Paper_2
+    3300020: Paper_3
+    3300022: Paper_4
+    3300024: Paper_5
+    3300026: Paper_6
+    3300028: Paper_7
+    3300030: Paper_8
+    3300032: Paper_9
+    3300034: Pen
+    3300036: Pen1
+    3300038: pencil2
+    3300040: pencil3
+    3300042: Scissor_2
+    3300044: Stapler
+    3300046: stickynotes
+    3300048: Tape_Piece_1
+    3300050: Tape_Piece_2
+    3300052: Tape_Piece_3
+    3300054: Tape_Piece_4
+    3300056: Tape_Piece_5
+    3300058: Tape_Roll
+    3300060: Tape_Roll1
+    4300000: Stapler
+    4300002: Tape_Roll
+    4300004: Pen
+    4300006: Marker
+    4300008: Paper_1
+    4300010: Paper_2
+    4300012: Paper_3
+    4300014: Paper_4
+    4300016: Paper_5
+    4300018: Paper_6
+    4300020: Paper_7
+    4300022: Paper_8
+    4300024: Paper_9
+    4300026: Paper_10
+    4300028: Binder_1
+    4300030: Binder_2
+    4300032: Binder_3
+    4300034: Tape_Piece_1
+    4300036: Tape_Piece_2
+    4300038: Tape_Piece_3
+    4300040: Tape_Piece_4
+    4300042: Tape_Piece_5
+    4300044: Pen1
+    4300046: Paper_11
+    4300048: Tape_Roll1
+    4300050: Scissor_2
+    4300052: stickynotes
+    4300054: pencil2
+    4300056: pencil3
+    4300058: Paper_12
+    4300060: Paper_13
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
