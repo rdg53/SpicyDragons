@@ -10,8 +10,12 @@ public class WallMover : MonoBehaviour {
     GameObject wallPositionParent;
     GameObject wall;
 
+    public GameObject MainMenu;
+    public GameObject ResultsMenu;
+
     public Text percentageText;
     public Image renderImage;
+    public Transform renderPos;
 
 
     List<GameObject> poseList = new List<GameObject>();
@@ -128,6 +132,13 @@ public class WallMover : MonoBehaviour {
         posePicker.enabled = !posePicker.isActiveAndEnabled;
     }
 
+    void ShowResults(){
+        posePicker.enabled = !posePicker.isActiveAndEnabled;
+        MainMenu.SetActive(false);
+        ResultsMenu.SetActive(true);
+
+    }
+
     //spawn, parent, and move the walls from start to end in 5 seconds
     public IEnumerator MoveOverSeconds(Vector3 end, float seconds)
     {
@@ -147,13 +158,7 @@ public class WallMover : MonoBehaviour {
 
             wall.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
-            /*RenderUnlitCamera render = wall.GetComponent<RenderUnlitCamera>();
-
-            render.RenderCamera();
-            renderImage.gameObject.SetActive(true);
-            renderImage.sprite = Sprite.Create(render.texture2D, new Rect(0, 0, render.renderTexture.width, render.renderTexture.height), new Vector2(0.5f,0.5f));
-            StartCoroutine(render.CompareTexture(percentageText));
-            */
+            
 
             float elapsedTime = 0;
             Vector3 startingPos = wall.transform.position;
@@ -165,11 +170,20 @@ public class WallMover : MonoBehaviour {
                 elapsedTime += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
-            wall.transform.position = end;
+            // wall.transform.position = end;
+            wall.transform.position = renderPos.position;
+            RenderUnlitCamera render = wall.GetComponent<RenderUnlitCamera>();
+            render.RenderCamera();
+            renderImage.gameObject.SetActive(true);
+            renderImage.sprite = Sprite.Create(render.texture2D, new Rect(0, 0, render.renderTexture.width, render.renderTexture.height), new Vector2(0.5f,0.5f));
+            StartCoroutine(render.CompareTexture(percentageText));
+            
 
             Destroy(wall);
         }
-        this.HideShowPicker();
+        // this.HideShowPicker();
+        ShowResults();
+
         foreach (GameObject but in pickedPanel)
         {
             but.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.392f);
