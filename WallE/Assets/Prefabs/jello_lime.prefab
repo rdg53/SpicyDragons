@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33766944789904472}
   - component: {fileID: 23880416270784802}
   - component: {fileID: 65641618810113034}
+  - component: {fileID: 114247791089157264}
   m_Layer: 0
   m_Name: jello_lime
   m_TagString: Untagged
@@ -95,3 +96,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 130, y: 130, z: 130}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114247791089157264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1487333462512784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba36e9afb0d567b40b00cc4e31bec52a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

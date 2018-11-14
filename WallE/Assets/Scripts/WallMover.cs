@@ -78,9 +78,13 @@ public class WallMover : MonoBehaviour {
         foreach (GameObject cube in poseList)
         {
             //create the pose wall and set the position relative to the parent
-            wall = Instantiate(cube, wallPositionParent.transform.position, new Quaternion(0, 0, 0, 0));
+            //wall = Instantiate(cube, wallPositionParent.transform.position, new Quaternion(0, 0, 0, 0));
+            wall = Instantiate(cube, wallPositionParent.transform.position, Quaternion.identity);
             wall.transform.parent = wallPositionParent.transform;
-            wall.transform.localScale = new Vector3(0.0003f, 0.0003f, 0.0003f);
+            wall.transform.rotation = wallPositionParent.transform.rotation;
+            Debug.Log("Instantiated object's rotation value is: " + wall.transform.rotation);
+
+            wall.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
             /*RenderUnlitCamera render = wall.GetComponent<RenderUnlitCamera>();
 
