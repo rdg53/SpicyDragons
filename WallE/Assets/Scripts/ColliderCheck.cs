@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ColliderCheck : MonoBehaviour {
 
-    public SphereCollider avatarCollider;
-    public SphereCollider animationCollider;
+    public Collider avatarCollider;
+    public Collider animationCollider;
     public GameObject fireflyGeo;
     public Material red;
     public Material green;
