@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Academy.HoloToolkit.Unity
 {
@@ -45,9 +46,10 @@ namespace Academy.HoloToolkit.Unity
         //private FillWire hitWire;
         //private Switch hitSwitch;
         //private Switch.SwitchState switchState;
-        public SurfaceReticle sr;
+        //public SurfaceReticle sr;
         public GameObject currentHitInfo = null;
 
+        //public Image reticleImage;
         //public QueueManager myQueueManager;
 
         
@@ -106,7 +108,7 @@ namespace Academy.HoloToolkit.Unity
             if (hitInfo.collider != null)
             {
                 //Place reticle on surface
-                sr.PositionReticle(Position);
+                //sr.PositionReticle(Position);
                 currentHitInfo = hitInfo.collider.gameObject;
                 //Code to display the hover outline on objects and detect what kind of object you are hovering over
                 if (hitInfo.collider.GetComponent<IInteractable>() != null)
@@ -114,35 +116,28 @@ namespace Academy.HoloToolkit.Unity
                     hitInfo.collider.GetComponent<IInteractable>().OnHover();
 
                     ExperienceManager.instance.gazing = true;
-                    /*
-                    if (hitInfo.collider.GetComponent<IInteractable>().Identified == false) {
-                        
-                        //ExperienceManager.instance.firstGaze = true;
-                    } else
-                    {
-                        ExperienceManager.instance.gazing = true;
-                    }
-                    */
                 }
 
 
 
                 //hitOutline.enabled = true;
-                if (ExperienceManager.instance.firstSelectionComplete == true)
-                {
-                    if (hitInfo.collider.GetComponent<IInteractable>() != null)
-                    {
+                //if (ExperienceManager.instance.firstSelectionComplete == true)
+                //{
+                //    Debug.Log("happening 1?");
+                //    if (hitInfo.collider.GetComponent<IInteractable>() != null)
+                //    {
+                //        Debug.Log("happening 2?");
+                //        if (hitInfo.collider.GetComponent<IInteractable>().Identified == false)
+                //        {
+                //            Debug.Log("happening 3?");
+                //            hitInfo.collider.GetComponent<IInteractable>().OnSelect();
 
-                        if (hitInfo.collider.GetComponent<IInteractable>().Identified == false)
-                        {
-                            hitInfo.collider.GetComponent<IInteractable>().OnSelect();
+                //            //ExperienceManager.instance.firstGaze = false;
+                //            hitInfo.collider.GetComponent<IInteractable>().Identified = true;
 
-                            //ExperienceManager.instance.firstGaze = false;
-                            hitInfo.collider.GetComponent<IInteractable>().Identified = true;
-
-                        }
-                    }
-                }
+                //        }
+                //    }
+                //}
 
                 if (ExperienceManager.instance.selectionComplete == true)
                 {

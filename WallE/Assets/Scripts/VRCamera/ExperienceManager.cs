@@ -21,7 +21,7 @@ public class ExperienceManager : MonoBehaviour {
     public bool firstFadeOnSelect = false;
 
     public Image selectionProgress;
-    public Image firstSelectionProgress;
+    //public Image firstSelectionProgress;
 
 
     private float t = 0.0f;
@@ -32,7 +32,8 @@ public class ExperienceManager : MonoBehaviour {
     public bool reset = true;
     public bool firstReset = true;
 
-
+    //additional variable
+    public float selectionTimeScalingFactor = 1.0f;
 
 
     private void Awake()
@@ -51,78 +52,8 @@ public class ExperienceManager : MonoBehaviour {
     }
 	
 	void Update () {
-        //if (firstGaze == true)
-        //{
-        //    selectionProgress.gameObject.SetActive(false);
-        //    firstSelectionProgress.gameObject.SetActive(true);
-        //    FirstSelectionProgressBar();
-
-        //}
         selectionProgress.gameObject.SetActive(true);
-        firstSelectionProgress.gameObject.SetActive(false);
         SelectionProgressBar();
-    }
-
-
-    public void FirstSelectionProgressBar()
-    {
-        if (/*firstGaze == true && */firstSelectionComplete == false && firstLocked == false)
-        {
-            if (firstReset == true)
-            {
-                //GestureSounds.instance.PlaySingleIfPossible(GestureSounds.instance.Selecting);
-                firstSelectionProgress.fillAmount = 0f;
-                firstReset = false;
-            }
-            firstSelectionProgress.fillAmount += Time.deltaTime;
-            var c = firstSelectionProgress.color;
-            c.a = 255f * (firstSelectionProgress.fillAmount + 0.001f) / 255f;
-            firstSelectionProgress.color = c;
-
-            if (firstSelectionProgress.fillAmount >= 1)
-            {
-                firstSelectionProgress.fillAmount = 1f;
-                firstSelectionComplete = true;
-                firstFadeOnSelect = true;
-            }
-
-        }
-        else if (firstCancelProgress == true && firstFadeOnSelect == false)
-        {
-            firstSelectionComplete = false;
-            firstSelectionProgress.fillAmount -= Time.deltaTime;
-            var c = firstSelectionProgress.color;
-            c.a = 255f * (firstSelectionProgress.fillAmount + 0.001f) / 255f;
-            firstSelectionProgress.color = c;
-
-            if (firstSelectionProgress.fillAmount <= 0)
-            {
-                firstSelectionProgress.fillAmount = 0f;
-                firstCancelProgress = false;
-                firstReset = true;
-                //GestureSounds.instance.StopSingle(GestureSounds.instance.Selecting);
-            }
-
-        }
-
-        if (firstFadeOnSelect == true)
-        {
-            firstReset = true;
-            //GestureSounds.instance.StopSingle(GestureSounds.instance.Selecting);
-            var c = firstSelectionProgress.color;
-            c.a = Mathf.Lerp(1f, 0f, t);
-            firstSelectionProgress.color = c;
-
-            t += Time.deltaTime;
-            if (t > 1.0f)
-            {
-                firstSelectionProgress.fillAmount = 0f;
-                firstFadeOnSelect = false;
-                //firstGaze = false;
-
-                t = 0.0f;
-            }
-        }
     }
 
     public void SelectionProgressBar()
@@ -131,11 +62,11 @@ public class ExperienceManager : MonoBehaviour {
         {
             if (reset == true)
             {
-                //GestureSounds.instance.PlaySingleIfPossible(GestureSounds.instance.Selecting);
                 selectionProgress.fillAmount = 0f;
                 reset = false;
             }
-            selectionProgress.fillAmount += Time.deltaTime;
+            //selectionProgress.fillAmount += Time.deltaTime;
+            selectionProgress.fillAmount += Time.deltaTime * selectionTimeScalingFactor;
             var c = selectionProgress.color;
             c.a = 255f * (selectionProgress.fillAmount + 0.001f) / 255f;
             selectionProgress.color = c;
@@ -151,7 +82,8 @@ public class ExperienceManager : MonoBehaviour {
         else if (cancelProgress == true && fadeOnSelect == false)
         {
             selectionComplete = false;
-            selectionProgress.fillAmount -= Time.deltaTime;
+            //selectionProgress.fillAmount -= Time.deltaTime;
+            selectionProgress.fillAmount -= Time.deltaTime * selectionTimeScalingFactor;
             var c = selectionProgress.color;
             c.a = 255f * (selectionProgress.fillAmount + 0.001f) / 255f;
             selectionProgress.color = c;
@@ -160,7 +92,6 @@ public class ExperienceManager : MonoBehaviour {
                 selectionProgress.fillAmount = 0f;
                 cancelProgress = false;
                 reset = true;
-                //GestureSounds.instance.StopSingle(GestureSounds.instance.Selecting);
             }
 
         }
@@ -168,12 +99,12 @@ public class ExperienceManager : MonoBehaviour {
         if (fadeOnSelect == true)
         {
             reset = true;
-            //GestureSounds.instance.StopSingle(GestureSounds.instance.Selecting);
             var c = selectionProgress.color;
             c.a = Mathf.Lerp(1f, 0f, t);
             selectionProgress.color = c;
 
-            t += Time.deltaTime;
+            //t += Time.deltaTime;
+            t += Time.deltaTime * selectionTimeScalingFactor;
             if (t > 1.0f)
             {
                 selectionProgress.fillAmount = 0f;
@@ -186,10 +117,6 @@ public class ExperienceManager : MonoBehaviour {
         }
     }
 
-
-
-
-
     IEnumerator FadeInFadeOut(float sign, float target )
     {
         while(selectionProgress.fillAmount <= 1)
@@ -200,24 +127,5 @@ public class ExperienceManager : MonoBehaviour {
             selectionProgress.color = c;
         }
         yield return null;
-    }
-
-
-
-
-    public void FoundSoderingIron()
-    {
-        //foundSoderingIron = true;
-        //GestureSounds.instance.PlaySingleIfPossible(GestureSounds.instance.PickedUp);
-    }
-    public void FoundGoggles()
-    {
-        //foundGoggles = true;
-        //GestureSounds.instance.PlaySingleIfPossible(GestureSounds.instance.PickedUp);
-    }
-    public void FoundMultimeter()
-    {
-        //foundMultimeter = true;
-        //GestureSounds.instance.PlaySingleIfPossible(GestureSounds.instance.PickedUp);
     }
 }

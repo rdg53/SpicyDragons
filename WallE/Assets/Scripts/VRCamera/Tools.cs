@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Tools : MonoBehaviour, IInteractable {
 
@@ -14,6 +16,7 @@ public class Tools : MonoBehaviour, IInteractable {
     //public bool identified = false;
     public bool displayInfo = false;
 
+    public Image reticleDisplay;
     
     bool IInteractable.Identified
     {
@@ -59,11 +62,9 @@ public class Tools : MonoBehaviour, IInteractable {
         }
         */
 
-        // TODO: Reset Scene here!
         Debug.Log("Tools method: OnSelect activated. The reset object has been identified. Tools.cs worked with GazeManager.");
-        Debug.Log("This is where resetting the game will happen.");
-        Destroy(gameObject);
 
+        ResetScene();
 
     }
 
@@ -73,12 +74,14 @@ public class Tools : MonoBehaviour, IInteractable {
         //GetComponent<Renderer>().material = border;
         //tickerObject.GetComponent<Renderer>().material = border;
         Debug.Log("Tools method: OnHover activated.");
+        reticleDisplay.enabled = true;
         DisplayInformation();
     }
 
     public void OnDeselect()
     {
         Debug.Log("Tools method: OnDeselect activated.");
+        reticleDisplay.enabled = false;
         //tickerObject.GetComponent<Renderer>().material = nonBorder;
         if (identified == false)
         {
@@ -96,5 +99,11 @@ public class Tools : MonoBehaviour, IInteractable {
     public void HideInformation()
     {
         displayInfo = false;
+    }
+
+    void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("The scene has been reset.");
     }
 }
