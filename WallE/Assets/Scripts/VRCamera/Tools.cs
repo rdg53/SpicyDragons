@@ -24,6 +24,7 @@ public class Tools : MonoBehaviour, IInteractable {
     public enum SelectionOptions {StartAnimation, ResetScene};
     public SelectionOptions currentSelectionOption = 0;
 
+    public GameObject myGameLogic;
 
     private void Start()
     {
@@ -64,7 +65,9 @@ public class Tools : MonoBehaviour, IInteractable {
 
         if(currentSelectionOption == SelectionOptions.StartAnimation)
         {
-            StartAnimation();
+            myGameLogic.GetComponent<GameLogic>().StartGame();
+            StartCoroutine(WaitForSeconds("startanimation"));
+            //StartAnimation();
         }
 
     }
@@ -103,6 +106,7 @@ public class Tools : MonoBehaviour, IInteractable {
 
     void StartAnimation()
     {
+        objectAnimator.speed = 0.5f;
         objectAnimator.enabled = true;
         gameObject.GetComponent<BoxCollider>().enabled = false;
     }
@@ -111,5 +115,16 @@ public class Tools : MonoBehaviour, IInteractable {
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Debug.Log("The scene has been reset.");
+    }
+
+    IEnumerator WaitForSeconds(string waitFor)
+    {
+        if (waitFor == "startanimation")
+        {
+            yield return new WaitForSeconds(3);
+            StartAnimation();
+        }
+        else
+            yield return new WaitForSeconds(3);
     }
 }
