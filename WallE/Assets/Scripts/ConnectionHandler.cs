@@ -12,16 +12,17 @@ public class ConnectionHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        NetworkClientConnect.Instance.Connect(IpRemember.IpAddress);
+        //Debug.LogWarning(IpRemember.IpAddress);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
     private void Awake()
     {
-        NetworkClientConnect.Instance.Connect(IpRemember.IpAddress);
+        //NetworkClientConnect.Instance.Connect(IpRemember.IpAddress);
     }
 }

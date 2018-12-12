@@ -111,9 +111,13 @@ public class Tools : MonoBehaviour, IInteractable {
 
 
         //myGameLogic.GetComponent<GameLogic>().StartSequence("TPose Start");
+
+
         gameObject.GetComponent<BoxCollider>().enabled = false;
+        OnDeselect();
         objectAnimator.enabled = true;
         objectAnimator.Play("TPose Start");
+        //objectAnimator.speed = 0.7f;
 
 
         //WaitForSeconds(objectAnimator.GetCurrentAnimatorClipInfo(0) + 1.0f);
