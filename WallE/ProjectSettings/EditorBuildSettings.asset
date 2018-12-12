@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/StrikeAPose.unity
     guid: 81480cae47628ce498ead6d6a293429a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tai.unity
     guid: 9ba979fbae36be54695b3918beb3086d
+  - enabled: 1
+    path: Assets/Scenes/TaiChiWorld_egMenu.unity
+    guid: d1dde7ee08239b843b510b0eb889510d
+  - enabled: 1
+    path: Assets/Scenes/TaiChiWorld.unity
+    guid: 94fd58c6028228149aae16311248c9b8

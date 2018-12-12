@@ -19,9 +19,10 @@ public class IpConnect : MonoBehaviour {
     {
         // connect the client skeleton to the server skeleton (running in the enablegames launcher app)
         string address = ipAddress.text;
+        IpRemember.IpAddress = address;
         print("Address= " + address);
-        NetworkClientConnect.Instance.Connect(address);
-        print("egAwake:after connect.");
+        //NetworkClientConnect.Instance.Connect(address);
+        //print("egAwake:after connect.");
     }
 	
 	// Update is called once per frame
