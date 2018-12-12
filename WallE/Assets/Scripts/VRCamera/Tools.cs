@@ -17,7 +17,29 @@ public class Tools : MonoBehaviour, IInteractable {
     public bool displayInfo = false;
 
     public Image reticleDisplay;
-    
+
+    private Animator objectAnimator;
+
+    //Types of selection objects
+    public enum SelectionOptions {StartAnimation, ResetScene};
+    public SelectionOptions currentSelectionOption = 0;
+
+
+    private void Start()
+    {
+        //if (gameObject.GetComponent<Animator>() != null)
+        //{
+        //    Debug.Log(gameObject.name + " has an animator and it has been set.");
+        //    objectAnimator = gameObject.GetComponent<Animator>();
+        //}
+        if (currentSelectionOption == SelectionOptions.StartAnimation)
+        {
+            Debug.Log(gameObject.name + " has an animator and it has been set.");
+            objectAnimator = gameObject.GetComponent<Animator>();
+        }
+
+    }
+
     bool IInteractable.Identified
     {
         get
@@ -34,37 +56,16 @@ public class Tools : MonoBehaviour, IInteractable {
 
     public void OnSelect()
     {
-        /*
-        if (identified == true)
-        {
-            if (currentToolType == ToolType.Goggles)
-            {
-                ExperienceManager.instance.FoundGoggles();
-                outerShell.SetActive(false);
-                Destroy(gameObject);
-            }
-            if (currentToolType == ToolType.Sodering)
-            {
-                ExperienceManager.instance.FoundSoderingIron();
-                Destroy(gameObject);
-
-            }
-            if (currentToolType == ToolType.Multimeter)
-            {
-                ExperienceManager.instance.FoundMultimeter();
-                Destroy(gameObject);
-
-            }
-        } else
-        {
-            DisplayInformation();
-            //identified = true;
-        }
-        */
-
         Debug.Log("Tools method: OnSelect activated. The reset object has been identified. Tools.cs worked with GazeManager.");
+        if(currentSelectionOption == SelectionOptions.ResetScene)
+        {
+            ResetScene();
+        }
 
-        ResetScene();
+        if(currentSelectionOption == SelectionOptions.StartAnimation)
+        {
+            StartAnimation();
+        }
 
     }
 
@@ -90,7 +91,6 @@ public class Tools : MonoBehaviour, IInteractable {
         HideInformation();
     }
 
-
     public void DisplayInformation()
     {
         //identified = true;
@@ -99,6 +99,12 @@ public class Tools : MonoBehaviour, IInteractable {
     public void HideInformation()
     {
         displayInfo = false;
+    }
+
+    void StartAnimation()
+    {
+        objectAnimator.enabled = true;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
     }
 
     void ResetScene()
