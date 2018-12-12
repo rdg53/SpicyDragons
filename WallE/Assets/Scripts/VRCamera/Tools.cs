@@ -19,6 +19,8 @@ public class Tools : MonoBehaviour, IInteractable {
     public Image reticleDisplay;
 
     private Animator objectAnimator;
+    public Animation objectAnimation;
+    public AnimationClip[] clips;
 
     //Types of selection objects
     public enum SelectionOptions {StartAnimation, ResetScene};
@@ -66,8 +68,8 @@ public class Tools : MonoBehaviour, IInteractable {
         if(currentSelectionOption == SelectionOptions.StartAnimation)
         {
             myGameLogic.GetComponent<GameLogic>().StartGame();
-            StartCoroutine(WaitForSeconds("startanimation"));
-            //StartAnimation();
+            //StartCoroutine(WaitForSeconds("startanimation"));
+            StartAnimation();
         }
 
     }
@@ -106,9 +108,39 @@ public class Tools : MonoBehaviour, IInteractable {
 
     void StartAnimation()
     {
-        objectAnimator.speed = 0.5f;
-        objectAnimator.enabled = true;
+
+
+        //myGameLogic.GetComponent<GameLogic>().StartSequence("TPose Start");
         gameObject.GetComponent<BoxCollider>().enabled = false;
+        objectAnimator.enabled = true;
+        objectAnimator.Play("TPose Start");
+
+
+        //WaitForSeconds(objectAnimator.GetCurrentAnimatorClipInfo(0) + 1.0f);
+
+        //objectAnimator.Play("01-nuetralpose");
+
+
+
+
+
+        //StartCoroutine(WaitForMySeconds());
+        /*for (int i = 0; i < clips.Length; i++)
+        {
+            objectAnimator.enabled = true;
+            objectAnimator.Play(clips[i].ToString());
+            //WaitForSeconds(clips[i].ToString());
+        }*/
+        //objectAnimator.Play("TPose Start");
+        //objectAnimation.clip = clips[3];
+        //objectAnimation.Play();
+        //objectAnimation.playAutomatically = true ;
+        //Debug.Log("playing");
+        //myGameLogic.GetComponent<GameLogic>().StartSequence();
+        //objectAnimator.speed = 0.5f;
+        //objectAnimator.enabled = true;
+        //gameObject.GetComponent<BoxCollider>().enabled = false;
+
     }
 
     void ResetScene()
@@ -117,14 +149,12 @@ public class Tools : MonoBehaviour, IInteractable {
         Debug.Log("The scene has been reset.");
     }
 
-    IEnumerator WaitForSeconds(string waitFor)
+    IEnumerator WaitForSeconds(float secs)
     {
-        if (waitFor == "startanimation")
-        {
-            yield return new WaitForSeconds(3);
-            StartAnimation();
-        }
-        else
-            yield return new WaitForSeconds(3);
+      
+        yield return new WaitForSeconds(secs);
+            //objectAnimator.Play(waitFor);
+            //StartAnimation();
+
     }
 }

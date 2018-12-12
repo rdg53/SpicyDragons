@@ -19,16 +19,19 @@ public class GameLogic : MonoBehaviour {
 
     public void StartGame()
     {
-        myImage.SetActive(true);
-        myCamera.transform.SetParent(null);
+        //myImage.SetActive(true);
+        //myCamera.transform.SetParent(null);
+        //myAvatar.transform.SetParent(null);
         myAvatar.transform.position = ThirdPersonLocation.transform.position;
         myAvatar.transform.rotation = ThirdPersonLocation.transform.rotation;
+        myAvatar.SetActive(true);
         myImage.SetActive(false);
     }
 
 
-    public void StartSequence()
+    public void StartSequence(string sequencename)
     {
+      
 
     }
 
